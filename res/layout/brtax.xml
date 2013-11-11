@@ -7,48 +7,101 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Brtax" >
-	
-   <EditText
-        android:id="@+id/eanText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="144dp"
-        android:ems="13"
-        android:hint="@string/ean"
-        android:inputType="number" >
-
-    </EditText>
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:text="@string/consultEan"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <ImageButton
         android:id="@+id/imageBarCode"
         android:layout_width="30dip"
         android:layout_height="30dip"
-        android:layout_alignRight="@+id/eanText"
         android:layout_below="@+id/eanText"
+        android:layout_centerHorizontal="true"
         android:contentDescription="@string/ean"
         android:onClick="capture"
+        android:gravity="center"
         android:src="@drawable/barcode" />
 
-    <Button
-        android:id="@+id/button1"
-        style="?android:attr/buttonStyleSmall"
+    <EditText
+        android:id="@+id/eanText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textEan"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:ems="13"
+        android:hint="@string/ean"
+        android:gravity="center"
+        android:inputType="number" />
+
+
+    <requestFocus
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="83dp"
+        android:layout_toRightOf="@+id/imageBarCode" />
+
+    <TextView
+        android:id="@+id/textEan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="@string/consultEan"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextPriceProduct"
+        android:layout_below="@+id/TextPriceProduct"
+        android:ems="6"
+        android:gravity="center"
+        android:hint="@string/zero"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/TextPriceProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageBarCode"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="17dp"
+        android:gravity="center"
+        android:text="@string/price"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/consultButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/price"
+        android:layout_below="@+id/price"
+        android:gravity="center"
+        android:onClick="consultTax"
         android:text="@string/consultTribute" />
 
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/eanText"
+        android:layout_alignRight="@+id/TextPriceProduct"
+        android:layout_below="@+id/consultButton"
+        android:layout_marginTop="15dp"
+        android:text="@string/result"
+        android:visibility="invisible"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/result"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:visibility="invisible"
+        android:max="100" />
+ 
 </RelativeLayout>

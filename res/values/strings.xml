@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Brtax-mobile</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="ean">Código EAN</string>
+    <string name="ean">Código de Barras</string>
+    <string name="price">Preço do produto</string>
     <string name="title_activity_capture">Capture</string>
     <string name="capture">Posicione o código de barras no local indicado</string>
     <string name="consultEan">Consultar por Produto</string>
     <string name="consultTribute">Consultar Imposto</string>
-
+    <string name="zero">0,00</string>
+	<color name="blue">#33B5E5</color>
+	<string name="result">Resultado da Consulta:</string>
+	<string name="resultNameProduct">Produto:</string>
+	<string name="resultTax">Imposto %:</string>
+	<string name="resultTaxPrice">Valor Imposto: </string>
+	<string name="resultPrice">Preço: </string>
+	<string name="resultPriceFee">Preço s/ Imposto: </string>
 </resources>

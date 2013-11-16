@@ -11,8 +11,6 @@ import android.widget.Toast;
 
 public class MenuBrTax extends ListActivity {
 	private final String[] data = { 
-			"Ligar 555", 
-			"Abrir URL",
 			"Consulta Imposto Unitário",
 			};
 	
@@ -32,18 +30,6 @@ public class MenuBrTax extends ListActivity {
 		
 		switch ( position )  {
 		case 0:
-			startActivity( 
-					new Intent( 
-							Intent.ACTION_CALL, 
-							    Uri.parse( "tel:555" ) ) );
-			break;
-		case 1:
-			startActivity( 
-					new Intent( 
-							Intent.ACTION_VIEW, 
-							    Uri.parse( "http://www.terra.com.br" ) ) );
-			break;
-		case 2:
 			startActivity( 
 					new Intent( this, Brtax.class ) );
 			break;

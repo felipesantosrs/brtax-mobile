@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+android:id="@+id/popup_element" 
+android:layout_width="fill_parent" 
+android:layout_height="fill_parent"  
+android:orientation="vertical"
+android:background="#EEE9E9" 
+android:padding="10sp" > 
+<TextView
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/result"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/resultTextValorSemImposto"
+        android:onClick="fechar"
+        android:text="Fechar" 
+          android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+    <TextView
+        android:id="@+id/resultTextPorcentagem"
+        android:layout_width="169dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/resultTextPrecoTotal"
+        android:layout_marginTop="42dp"
+        android:textStyle="bold|italic"
+        android:text="@string/resultValorPorcentagem"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/resultTextEan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/result"
+        android:layout_below="@+id/result"
+        android:layout_marginTop="29dp"
+        android:text="@string/resultEan"
+        android:textStyle="bold|italic"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/resultTextName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/resultTextEan"
+        android:layout_below="@+id/resultTextEan"
+        android:layout_marginTop="32dp"
+        android:text="@string/resultName"
+        android:textStyle="bold|italic"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/resultTextPrecoTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/resultTextName"
+        android:layout_below="@+id/resultTextName"
+        android:layout_marginTop="32dp"
+        android:text="@string/resultPrecoTotal"
+        android:textStyle="bold|italic"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/resultTextValorSemImposto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/resultTextPorcentagem"
+        android:layout_below="@+id/resultTextPorcentagem"
+        android:layout_marginTop="34dp"
+        android:text="@string/resultValorSemImposto"
+        android:textStyle="bold|italic"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/resultTextValorImposto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/close"
+        android:layout_alignLeft="@+id/resultTextValorSemImposto"
+        android:layout_marginBottom="39dp"
+        android:text="@string/resultValorImposto"
+        android:textStyle="bold|italic"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</RelativeLayout>

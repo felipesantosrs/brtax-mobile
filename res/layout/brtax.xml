@@ -8,16 +8,20 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Brtax" >
 
-    <ImageButton
-        android:id="@+id/imageBarCode"
-        android:layout_width="30dip"
-        android:layout_height="30dip"
-        android:layout_below="@+id/eanText"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@string/ean"
-        android:onClick="capture"
+
+ 
+
+    <Button
+        android:id="@+id/consultButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/TextPriceProduct"
+        android:layout_marginBottom="22dp"
         android:gravity="center"
-        android:src="@drawable/barcode" />
+        android:onClick="consultTax"
+        android:text="@string/consultTribute" />
 
     <EditText
         android:id="@+id/eanText"
@@ -25,27 +29,23 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textEan"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dp"
         android:ems="13"
-        android:hint="@string/ean"
         android:gravity="center"
-        android:inputType="number" />
+        android:hint="@string/ean"
+        android:inputType="number" >
 
-
-    <requestFocus
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="83dp"
-        android:layout_toRightOf="@+id/imageBarCode" />
+        <requestFocus />
+    </EditText>
 
     <TextView
-        android:id="@+id/textEan"
+        android:id="@+id/TextPriceProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/imageBarCode"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="@string/consultEan"
+        android:layout_marginTop="58dp"
         android:gravity="center"
+        android:text="@string/price"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
@@ -60,47 +60,36 @@
         android:inputType="numberDecimal" />
 
     <TextView
-        android:id="@+id/TextPriceProduct"
+        android:id="@+id/textEan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageBarCode"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="17dp"
         android:gravity="center"
-        android:text="@string/price"
+        android:text="@string/consultEan"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <Button
-        android:id="@+id/consultButton"
-        style="?android:attr/buttonStyleSmall"
+    <ImageButton
+        android:id="@+id/imageBarCode"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/price"
-        android:layout_below="@+id/price"
+        android:layout_height="40dip"
+        android:layout_below="@+id/eanText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/ean"
         android:gravity="center"
-        android:onClick="consultTax"
-        android:text="@string/consultTribute" />
-
-
-    <TextView
-        android:id="@+id/result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/eanText"
-        android:layout_alignRight="@+id/TextPriceProduct"
-        android:layout_below="@+id/consultButton"
-        android:layout_marginTop="15dp"
-        android:text="@string/result"
-        android:visibility="invisible"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:onClick="capture"
+        android:src="@drawable/ean" />
 
     <ProgressBar
         android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/result"
+        android:layout_above="@+id/consultButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="15dp"
         android:visibility="invisible"
         android:max="100" />
  

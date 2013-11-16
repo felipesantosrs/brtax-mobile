@@ -12,9 +12,14 @@
     <string name="zero">0,00</string>
 	<color name="blue">#33B5E5</color>
 	<string name="result">Resultado da Consulta:</string>
-	<string name="resultNameProduct">Produto:</string>
-	<string name="resultTax">Imposto %:</string>
-	<string name="resultTaxPrice">Valor Imposto: </string>
-	<string name="resultPrice">Preço: </string>
-	<string name="resultPriceFee">Preço s/ Imposto: </string>
+	<string name="resultEan">Código de Barras:</string>
+	<string name="resultName">Nome Produto:</string>
+	<string name="resultPrecoTotal">Preço Total: </string>
+	<string name="resultImposto">Imposto %:</string>
+	<string name="resultValorImposto">Valor Imposto: </string>
+	<string name="resultValorSemImposto">Preço sem imposto: </string>
+	<string name="resultValorPorcentagem">Porcentagem: </string>
+	<string name="splash_label">BRTax</string>
+	<string name="splash_label2">Consulta de Imposto no pauma da mão</string>
+	
 </resources>

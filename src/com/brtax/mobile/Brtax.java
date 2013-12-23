@@ -1,6 +1,8 @@
-package com.brtax.mobile;
+/**
+ * BrTax - Mobile
+ */
 
-import java.text.DecimalFormat;
+package com.brtax.mobile;
 
 import jim.h.common.android.zxinglib.integrator.IntentIntegrator;
 import jim.h.common.android.zxinglib.integrator.IntentResult;
@@ -12,7 +14,6 @@ import org.ksoap2.serialization.SoapSerializationEnvelope;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,7 +24,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -32,6 +32,12 @@ import android.widget.Toast;
 import com.brtax.dto.ProductDTO;
 import com.brtax.util.WebService;
 
+/**
+ * Classe que representa a tela de consulta de imposto
+ * 
+ * @author Felipe
+ * 
+ */
 public class Brtax extends Activity {
 
 	ImageButton btnImageCapture;
@@ -44,6 +50,9 @@ public class Brtax extends Activity {
 	private ProgressBar bar = null;
 	private PopupWindow pwindo;
 
+	/**
+	 * Método que realiza a criação da tela
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -53,35 +62,42 @@ public class Brtax extends Activity {
 		price = (EditText) findViewById(R.id.price);
 		btnConsult = (Button) findViewById(R.id.consultButton);
 		bar = (ProgressBar) findViewById(R.id.progressBar);
-		boolean var = true; 
-		
+		boolean var = true;
 
-		
 		btnConsult.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				
-				if (eanText.getText().toString().equals(null)|| eanText.getText().toString().trim().equals("") ) {
+
+				if (eanText.getText().toString().equals(null)
+						|| eanText.getText().toString().trim().equals("")) {
 					eanText.setError("Código de barras deve ser informado");
-				}
-				else if (price.getText().toString().equals(null) || price.getText().toString().trim().equals("")){
-				 price.setError("Preço do produto deve ser informado");
-				}
-				else if (eanText.getText().toString().trim().length()>13){
-					 eanText.setError("Código de barras não pode ser maior que 13 caracteres");
-				}else{
-				new AsyncCallWS().execute();
+				} else if (price.getText().toString().equals(null)
+						|| price.getText().toString().trim().equals("")) {
+					price.setError("Preço do produto deve ser informado");
+				} else if (eanText.getText().toString().trim().length() > 13) {
+					eanText.setError("Código de barras não pode ser maior que 13 caracteres");
+				} else {
+					new AsyncCallWS().execute();
 				}
 			}
 
 		});
 	}
 
+	/**
+	 * Método que realiza a chamada da camera do celular
+	 * 
+	 * @param view
+	 *            - passa a view da interface
+	 */
 	public void capture(View view) {
 		IntentIntegrator.initiateScan(this, R.layout.capture,
 				R.id_capture.viewfinder_view, R.id_capture.preview_view, true);
 
 	}
 
+	/**
+	 * Método que representa o resultado do código de barras
+	 */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -111,6 +127,12 @@ public class Brtax extends Activity {
 		finish();
 	}
 
+	/**
+	 * Metódo que representa o consulta impostos realiza chamada do webservice
+	 * 
+	 * @param view
+	 *            - valores da interface
+	 */
 	public void consultTax(View view) {
 		setContentView(R.layout.brtax);
 		eanText = (EditText) findViewById(R.id.eanText);
@@ -166,67 +188,88 @@ public class Brtax extends Activity {
 								"Erro ao carregar o produto.",
 								Toast.LENGTH_SHORT).show();
 
-					}else if (p.getName().toString()== null){
-						Toast.makeText(Brtax.this,
-								"Produto não encontrado.",
+					} else if (p.getName().toString() == null) {
+						Toast.makeText(Brtax.this, "Produto não encontrado.",
 								Toast.LENGTH_SHORT).show();
 					}
-					
+
 				}
 			});
 
 			return null;
 		}
 
+		/**
+		 * Método que é chamado após a execução do webService, mostrando
+		 * resultado
+		 */
 		@Override
 		protected void onPostExecute(Void result) {
 
 			bar.setVisibility(View.INVISIBLE);
-			if (p != null){
-			// We need to get the instance of the LayoutInflater
-			LayoutInflater inflater = (LayoutInflater) Brtax.this
-					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			View promptsView = inflater.inflate(R.layout.toast, (ViewGroup)
+			if (p != null) {
+				// We need to get the instance of the LayoutInflater
+				LayoutInflater inflater = (LayoutInflater) Brtax.this
+						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				View promptsView = inflater.inflate(R.layout.toast, (ViewGroup)
 
-		    findViewById(R.id.popup_element));
-			pwindo = new PopupWindow(promptsView , 780, 960, true);
-			
-			TextView resultTextEan = (TextView) promptsView.findViewById(R.id.resultTextEan);
-			TextView resultTextName = (TextView) promptsView.findViewById(R.id.resultTextName);
-			TextView resultTextPrecoTotal = (TextView) promptsView.findViewById(R.id.resultTextPrecoTotal);
-			TextView resultTextValorImposto = (TextView) promptsView.findViewById(R.id.resultTextValorImposto);
-			TextView resultTextValorSemImpost = (TextView) promptsView.findViewById(R.id.resultTextValorSemImposto);
-			TextView resultTextPorcentagem = (TextView) promptsView.findViewById(R.id.resultTextPorcentagem);
+				findViewById(R.id.popup_element));
+				pwindo = new PopupWindow(promptsView, 780, 960, true);
 
-			resultTextEan.setText("Código de Barras: "
-					+ eanText.getText().toString());
-			resultTextName.setText("Nome produto: " + p.getName());
-			resultTextPrecoTotal.setText("Preço produto: " +  format(p.getPrice()));
-			resultTextPorcentagem.setText("% Imposto: " + format(p.getTax()));
-			resultTextValorImposto.setText("Valor do imposto: "
-					+ format(p.getValueTax()));
-			resultTextValorSemImpost.setText("Valor sem imposto: "
-					+ format(p.getPriceFee()));
-			pwindo.showAtLocation(promptsView, Gravity.CENTER, 0, 0);
-			btnClose = (Button) promptsView.findViewById(R.id.close);
+				TextView resultTextEan = (TextView) promptsView
+						.findViewById(R.id.resultTextEan);
+				TextView resultTextName = (TextView) promptsView
+						.findViewById(R.id.resultTextName);
+				TextView resultTextPrecoTotal = (TextView) promptsView
+						.findViewById(R.id.resultTextPrecoTotal);
+				TextView resultTextValorImposto = (TextView) promptsView
+						.findViewById(R.id.resultTextValorImposto);
+				TextView resultTextValorSemImpost = (TextView) promptsView
+						.findViewById(R.id.resultTextValorSemImposto);
+				TextView resultTextPorcentagem = (TextView) promptsView
+						.findViewById(R.id.resultTextPorcentagem);
 
-			btnClose.setOnClickListener(new View.OnClickListener() {
-				public void onClick(View v) {
-					pwindo.dismiss();
-				}
-			});
+				resultTextEan.setText("Código de Barras: "
+						+ eanText.getText().toString());
+				resultTextName.setText("Nome produto: " + p.getName());
+				resultTextPrecoTotal.setText("Preço produto: "
+						+ format(p.getPrice()));
+				resultTextPorcentagem.setText("% Imposto: "
+						+ format(p.getTax()));
+				resultTextValorImposto.setText("Valor do imposto: "
+						+ format(p.getValueTax()));
+				resultTextValorSemImpost.setText("Valor sem imposto: "
+						+ format(p.getPriceFee()));
+				pwindo.showAtLocation(promptsView, Gravity.CENTER, 0, 0);
+				btnClose = (Button) promptsView.findViewById(R.id.close);
+				p = null;
+				btnClose.setOnClickListener(new View.OnClickListener() {
+					public void onClick(View v) {
+						pwindo.dismiss();
+					}
+				});
 			}
 		}
 
+		/**
+		 * Método executado antes da execução do web service
+		 */
 		@Override
 		protected void onPreExecute() {
 			// Make ProgressBar invisible
 			bar.setVisibility(View.VISIBLE);
 		}
-		
-		public String format(double x) {  
-		    return String.format("%.2f", x);  
-		}  
+
+		/**
+		 * Método que passa valores de double para string
+		 * 
+		 * @param x
+		 *            - valor em double
+		 * @return - valor formado em duas casas em string
+		 */
+		public String format(double x) {
+			return String.format("%.2f", x);
+		}
 
 	}
 }

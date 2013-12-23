@@ -1,3 +1,8 @@
+/**
+ * BrTax - Mobile
+ */
+
+
 package com.brtax.util;
 
 import java.io.IOException;
@@ -10,7 +15,11 @@ import org.ksoap2.transport.HttpTransportSE;
 import org.xmlpull.v1.XmlPullParserException;
 
 
-
+/**
+ * Classe que invoca o web service
+ * @author Felipe
+ *
+ */
 public class WebService {
     //Namespace of the Webservice - can be found in WSDL
     private static String NAMESPACE = "http://brtax.com/";
@@ -21,6 +30,12 @@ public class WebService {
     
     private static String WEB_METH_NAME = "searchProductEAN";
     
+    /**
+     * Método que invoca o web service
+     * @param ean - ean informado na interface
+     * @param price - priço informado na interface
+     * @return response com informações sobre produto
+     */
     public static  SoapSerializationEnvelope invokeWS(String ean, String price) {
     	
         // Create request
